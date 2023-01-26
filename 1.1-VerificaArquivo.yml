@@ -1,0 +1,17 @@
+---
+- name: Verificando Arquivo
+  hosts: all
+
+  tasks:
+  - name: Task name
+    stat:
+      path: /etc/filenaoexiste.txt
+    register: file_data
+
+    - name: Task name 2
+      file:
+        path: /etc/filenaoexiste.txt
+        state: touch
+      when: not file_data.state.exists
+
+...
